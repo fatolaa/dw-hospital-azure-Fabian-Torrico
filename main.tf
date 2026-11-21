@@ -151,3 +151,30 @@ resource "azurerm_data_factory" "adf" {
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
 }
+
+# 5. Almacenamiento para los CSV de origen (los data flows de Data Factory los leen desde aqui).
+resource "azurerm_storage_account" "st" {
+  name                     = "stucbhospital8018968"
+  resource_group_name      = azurerm_resource_group.rg.name
+  location                 = azurerm_resource_group.rg.location
+  account_tier             = "Standard"
+  account_replication_type = "LRS"
+  min_tls_version          = "TLS1_2"
+}
+
+resource "azurerm_storage_container" "csv" {
+  name                  = "hospital-csv"
+  storage_account_name  = azurerm_storage_account.st.name
+  container_access_type = "private"
+}
+
+resource "azurerm_storage_blob" "csv_files" {
+  for_each = toset(["Pacientes.csv", "Admisiones.csv", "Diagnosticos.csv", "Facturacion.csv"])
+
+  name                   = each.value
+  storage_account_name   = azurerm_storage_account.st.name
+  storage_container_name = azurerm_storage_container.csv.name
+  type                   = "Block"
+  source                 = "${path.module}/data/${each.value}"
+  content_type           = "text/csv"
+}

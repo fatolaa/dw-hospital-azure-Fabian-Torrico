@@ -145,9 +145,9 @@ resource "terraform_data" "dw_schema" {
   }
 }
 
-# 4. Factoria de integracion en East US.
+# 4. Factoria de integracion en Brazil South (eastus esta bloqueada por politica de la suscripcion).
 resource "azurerm_data_factory" "adf" {
   name                = "adf-ucb-hospital-us-8018968"
   resource_group_name = azurerm_resource_group.rg.name
-  location            = "eastus"
+  location            = azurerm_resource_group.rg.location
 }

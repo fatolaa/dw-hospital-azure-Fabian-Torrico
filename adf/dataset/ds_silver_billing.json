@@ -1,0 +1,17 @@
+{
+	"name": "ds_silver_billing",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_sql_dw_hospital",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "silver",
+			"table": "billing"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,20 @@
+{
+	"name": "bronze_facturacion_sql",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_sql_dw_hospital",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "bronze/sql"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "bronze",
+			"table": "billing"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

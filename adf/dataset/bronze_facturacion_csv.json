@@ -1,0 +1,27 @@
+{
+	"name": "bronze_facturacion_csv",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_blob_hospital_csv",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "bronze/csv"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Facturacion.csv",
+				"container": "hospital-csv"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
